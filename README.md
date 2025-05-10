@@ -26,7 +26,14 @@ pip install -r requirements.txt
 ```
 uvicorn app.main:app --reload
 ```
+### API Endpoint
+GET /feed
+Returns personalized post recommendations.
 
+ Query Parameters:
+Name	Type	Required	Description
+username	string	Required	Username of the user to personalize recommendations.
+project_code	int	Optional	Filter recommendations to a specific category (if provided).
 ### Example Output From endpoint
 
 ```
