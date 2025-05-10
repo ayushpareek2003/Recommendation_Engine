@@ -28,14 +28,20 @@ uvicorn app.main:app --reload
 ```
 ### API Endpoint
 GET /feed
+```
+http://127.0.0.1:8000/feed?user_name=<username>&project_code=<query>
+```
 Returns personalized post recommendations.
 
-### 🔧 Query Parameters
+###  Query Parameters
 
 | Name         | Type   | Required | Description                                               |
 |--------------|--------|----------|-----------------------------------------------------------|
 | `username`   | string | Yes      | Username of the user to personalize recommendations.      |
 | `project_code` | string   | No       | Filter recommendations to a specific category (if provided). |
+
+
+
 ### Example Output From endpoint
 
 ```
