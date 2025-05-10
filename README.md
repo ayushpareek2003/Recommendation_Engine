@@ -1,161 +1,72 @@
 # Video Recommendation Engine
 
-A sophisticated recommendation system that suggests personalized video content based on user preferences and engagement patterns using deep neural networks. Ref: to see what kind of motivational content you have to recommend, take reference from our Empowerverse App [ANDROID](https://play.google.com/store/apps/details?id=com.empowerverse.app) || [iOS](https://apps.apple.com/us/app/empowerverse/id6449552284).
+This project implements a hybrid video recommendation engine using FastAPI. It supports two modes of recommendation:
 
-## 🎯 Project Overview
+Graph-Based Recommendations: Users are connected via a graph where edges represent similarity in interactions (likes, views, ratings). The system recommends videos liked or interacted with by top similar users.
 
-This project implements a video recommendation algorithm that:
+Semantic Ranking via Deep Learning: When a textual query or category is provided, the system uses a pre-trained sentence transformer model (BAAI/bge-base-en-v1.5) to embed both the query and rich video metadata (title, description, themes, keywords, etc.). Cosine similarity between embeddings ranks videos based on semantic relevance.
 
-- Delivers personalized content recommendations
-- Handles cold start problems using mood-based recommendations
-- Utilizes Graph/Deep neural networks for content analysis
-- Integrates with external APIs for data collection
-- Implements efficient data caching and pagination
+## Clone the project
 
-## 🛠️ Technology Stack
-
-- **Backend Framework**: FastAPI
-- **Documentation**: Swagger/OpenAPI
-
-## 📋 Prerequisites
-
-- Virtual environment (recommended)
-
-## 🚀 Getting Started
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/Tim-Alpha/video-recommendation-assignment.git
-   ```
-   ```bash
-   cd video-recommendation-engine
-   ```
-1. **Set Up Virtual Environment**
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-2. **Install Dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **Configure Environment Variables**
-   Create a `.env` file in the root directory:
-
-   ```env
-
-   FLIC_TOKEN=your_flic_token
-   API_BASE_URL=https://api.socialverseapp.com
-   ```
-4. **Run Database Migrations**
-
-   ```bash
-   alembic upgrade head
-   ```
-5. **Start the Server**
-
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-
-## 📊 API Endpoints
-
-### Recommendation Endpoints Has to Build
-
-1. **Get Personalized Feed**
-
-   ```
-   GET /feed?username={username}
-   ```
-
-   Returns personalized video recommendations for a specific user.
-2. **Get Category-based Feed**
-
-   ```
-   GET /feed?username={username}&project_code={project_code}
-   ```
-
-   Returns category-specific video recommendations for a user.
-
-### Data Collection Endpoints (Internal Use)
-
-APIs for data collection:
-
-### APIs
-
-1. **Get All Viewed Posts** (METHOD: GET):
-
-   ```
-   https://api.socialverseapp.com/posts/view?page=1&page_size=1000&resonance_algorithm=resonance_algorithm_cjsvervb7dbhss8bdrj89s44jfjdbsjd0xnjkbvuire8zcjwerui3njfbvsujc5if
-   ```
-2. **Get All Liked Posts** (METHOD: GET):
-
-   ```
-   https://api.socialverseapp.com/posts/like?page=1&page_size=1000&resonance_algorithm=resonance_algorithm_cjsvervb7dbhss8bdrj89s44jfjdbsjd0xnjkbvuire8zcjwerui3njfbvsujc5if
-   ```
-3. **Get All Inspired posts** (METHOD: GET):
-
-   ```
-   https://api.socialverseapp.com/posts/inspire?page=1&page_size=1000&resonance_algorithm=resonance_algorithm_cjsvervb7dbhss8bdrj89s44jfjdbsjd0xnjkbvuire8zcjwerui3njfbvsujc5if
-   ```
-4. **Get All Rated posts** (METHOD: GET):
-
-   ```
-   https://api.socialverseapp.com/posts/rating?page=1&page_size=1000&resonance_algorithm=resonance_algorithm_cjsvervb7dbhss8bdrj89s44jfjdbsjd0xnjkbvuire8zcjwerui3njfbvsujc5if
-   ```
-5. **Get All Posts** (Header required*) (METHOD: GET):
-
-   ```
-   https://api.socialverseapp.com/posts/summary/get?page=1&page_size=1000
-   ```
-6. **Get All Users** (Header required*) (METHOD: GET):
-
-   ```
-   https://api.socialverseapp.com/users/get_all?page=1&page_size=1000
-   ```
-
-### Authorization
-
-For autherization pass `Flic-Token` as header in the API request:
-
-Header:
-
-```json
-"Flic-Token": "flic_11d3da28e403d182c36a3530453e290add87d0b4a40ee50f17611f180d47956f"
+```
+https://github.com/ayushpareek2003/video-recommendation-assignment.git
 ```
 
-**Note**: All external API calls require the Flic-Token header:
+## Run local
 
+### Install dependencies
 
-## 📝 Submission Requirements
+```
+cd video-recommendation-assignment
+pip install -r requirements.txt
+```
 
-1. **GitHub Repository**
-   - Submit a merge request from your fork or cloned repository.
-   - Include a complete Postman collection demonstrating your API endpoints.
-   - Add a docs folder explaining how your recommendation system works.
-2. **Video Submission**
-   - Introduction Video (30–40 seconds)
-     - A short personal introduction (with face-cam).
-   - Technical Demo (3–5 minutes)
-     - Live demonstration of the APIs using Postman.
-     - Brief overview of the project.
-       Video Submission
+### Run server
 
-3. **Notification**
+```
+uvicorn app.main:app --reload
+```
 
-   - Join the Telegram group: [Video Recommendation](https://t.me/+VljbLT8o75QxN2I9)
-   - Notify upon completion
+### Example Output From endpoint
 
-## ✅ Evaluation Checklist
+```
+    {
+        "id": 63,
+        "title": "This app is literally steroids for your brain",
+        "upvote_count": 66,
+        "video_link": "https://video-cdn.socialverseapp.com/jack_9fe743fe-5749-498b-a3f0-f6d7bbb97fe1.mp4",
+        "username": "jack"
+    },
+    {
+        "id": 82,
+        "title": "Decide to be extraodinary and do",
+        "upvote_count": 33,
+        "video_link": "https://video-cdn.socialverseapp.com/kinha_db5268a0-e503-4ab3-8ac4-fb0990d7d478.mp4",
+        "username": "kinha"
+    },
+```
 
-- [ ] All APIs are functional
-- [ ] Database migrations work correctly
-- [ ] README is complete and clear
-- [ ] Postman collection is included
-- [ ] Videos are submitted
-- [ ] Code is well-documented
-- [ ] Implementation handles edge cases
-- [ ] Proper error handling is implemented
+## API documentation (provided by Swagger UI)
+```
+http://127.0.0.1:8000/docs
+```
+
+## Tech Stack Used 
+Machine Learning & NLP
+SentenceTransformer – semantic embeddings for text (model: BAAI/bge-base-en-v1.5)
+
+PyTorch – backend for computing cosine similarity between embeddings
+
+numpy – for sorting and numerical operations
+
+re (regex) – for parsing structured descriptions
+
+🛠️ Backend / API
+FastAPI – for building the /feed API endpoint
+
+Pydantic / Query – for query parameter validation and typing
+
+🗃️ Database
+MongoDB – stores user and post data
+
+pymongo – MongoDB Python client
