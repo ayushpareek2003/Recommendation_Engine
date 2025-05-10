@@ -35,7 +35,7 @@ Returns personalized post recommendations.
 | Name         | Type   | Required | Description                                               |
 |--------------|--------|----------|-----------------------------------------------------------|
 | `username`   | string | Yes      | Username of the user to personalize recommendations.      |
-| `project_code` | int    | No       | Filter recommendations to a specific category (if provided). |
+| `project_code` | string   | No       | Filter recommendations to a specific category (if provided). |
 ### Example Output From endpoint
 
 ```
