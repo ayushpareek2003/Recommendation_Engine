@@ -61,12 +61,12 @@ numpy – for sorting and numerical operations
 
 re (regex) – for parsing structured descriptions
 
-🛠️ Backend / API
+ Backend / API
 FastAPI – for building the /feed API endpoint
 
 Pydantic / Query – for query parameter validation and typing
 
-🗃️ Database
+Database
 MongoDB – stores user and post data
 
 pymongo – MongoDB Python client
