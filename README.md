@@ -30,10 +30,12 @@ uvicorn app.main:app --reload
 GET /feed
 Returns personalized post recommendations.
 
- Query Parameters:
-Name	Type	Required	Description
-username	string	Required	Username of the user to personalize recommendations.
-project_code	int	Optional	Filter recommendations to a specific category (if provided).
+### 🔧 Query Parameters
+
+| Name         | Type   | Required | Description                                               |
+|--------------|--------|----------|-----------------------------------------------------------|
+| `username`   | string | Yes      | Username of the user to personalize recommendations.      |
+| `project_code` | int    | No       | Filter recommendations to a specific category (if provided). |
 ### Example Output From endpoint
 
 ```
